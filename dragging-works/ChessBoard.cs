@@ -9,7 +9,7 @@ namespace chess_drag_test
     static class ChessBoard
     {
 
-        //hello test
+        //hello test changed
 
         private static readonly int heightTable;
         private static readonly int widthTable;
