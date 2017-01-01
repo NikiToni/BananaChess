@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace chess_drag_test
+﻿namespace chess_drag_test
 {
-    static class FiguresBox
+    internal static class FiguresBox
     {
         private static Figure[] figuresArray;
         private static Figure[] blackFiguresArray;
@@ -15,41 +9,41 @@ namespace chess_drag_test
         static FiguresBox()
         {
             figuresArray = new Figure[] {
-                                new Figure(Types.Rook, Colors.white),
-                                new Figure(Types.Knight, Colors.white),
-                                new Figure(Types.Bishop, Colors.white),
-                                new Figure(Types.Queen, Colors.white),
-                                new Figure(Types.King, Colors.white),
-                                new Figure(Types.Bishop, Colors.white),
-                                new Figure(Types.Knight, Colors.white),
-                                new Figure(Types.Rook, Colors.white),
+                                new Rook(ColorsOfFigures.white),
+                                new Knight(ColorsOfFigures.white),
+                                new Bishop(ColorsOfFigures.white),
+                                new Queen(ColorsOfFigures.white),
+                                new King(ColorsOfFigures.white),
+                                new Bishop(ColorsOfFigures.white),
+                                new Knight(ColorsOfFigures.white),
+                                new Rook(ColorsOfFigures.white),
 
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
-                                new Figure(Types.Pawn, Colors.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
+                                new Pawn(ColorsOfFigures.white),
 
-                                new Figure(Types.Rook, Colors.black),
-                                new Figure(Types.Knight, Colors.black),
-                                new Figure(Types.Bishop, Colors.black),
-                                new Figure(Types.Queen, Colors.black),
-                                new Figure(Types.King, Colors.black),
-                                new Figure(Types.Bishop, Colors.black),
-                                new Figure(Types.Knight, Colors.black),
-                                new Figure(Types.Rook, Colors.black),
+                                new Rook(ColorsOfFigures.black),
+                                new Knight(ColorsOfFigures.black),
+                                new Bishop(ColorsOfFigures.black),
+                                new Queen(ColorsOfFigures.black),
+                                new King(ColorsOfFigures.black),
+                                new Bishop(ColorsOfFigures.black),
+                                new Knight(ColorsOfFigures.black),
+                                new Rook(ColorsOfFigures.black),
 
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black),
-                                new Figure(Types.Pawn, Colors.black)
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black),
+                                new Pawn(ColorsOfFigures.black)
                         };
 
             whiteFiguresArray = new Figure[16];
@@ -62,19 +56,19 @@ namespace chess_drag_test
             }
         }
 
-        public static Figure[] Figures
+        internal static Figure[] Figures
         {
             get { return figuresArray; }
         }
 
-        public static Figure[] WhiteFigures
+        internal static Figure getWhiteFigureAtIndex(int i)
         {
-            get { return whiteFiguresArray; }
+            return whiteFiguresArray[i];
         }
 
-        public static Figure[] BlackFigures
+        internal static Figure getBlackFiguresAtIndex(int i)
         {
-            get { return blackFiguresArray; }
+            return blackFiguresArray[i];
         }
     }
 }

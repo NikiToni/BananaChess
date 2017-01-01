@@ -6,22 +6,21 @@ using System.Threading.Tasks;
 
 namespace chess_drag_test
 {
-    class Cell
+    class Cell : ICell
     {
         private bool empty;
-        private Figure figureOnMe;
-        private bool possible;
+        private Figure figureOnMe; //tells if in that cell there is a figure
 
         public Cell(bool empty)
         {
             this.empty = empty;
-            possible = false;
-    }
+        }
 
         public Figure MyFigure
         {
             get { return figureOnMe; } //make sure you dont access the figure of a empty cell
-            set {
+            set
+            {
                 empty = false;
                 figureOnMe = value;
             }
@@ -32,12 +31,5 @@ namespace chess_drag_test
             get { return empty; }
             set { empty = value; }
         }
-
-        public bool Possible
-        {
-            get { return possible; }
-            set { possible = value; }
-        }
-
     }
 }

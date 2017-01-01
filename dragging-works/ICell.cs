@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace chess_drag_test
 {
-    public enum Colors
+    interface ICell
     {
-        black,
-        white
+        Figure MyFigure { get; set; }
+
+        bool Empty { get; set; }
     }
 }

@@ -6,80 +6,98 @@ using System.Threading.Tasks;
 
 namespace chess_drag_test
 {
-    static class ChessBoard
+    internal static class ChessBoard
     {
-
-        //hello test changed
-
-        private static readonly int heightTable;
         private static readonly int widthTable;
         private static int cellWidth;
-        private static int cellHeight;
         private static Cell[,] cells;
+        private static bool[,] possMoves;
 
         static ChessBoard()
         {
-            heightTable = 600;  //NOTE: USe 600, because this way the cell size is 24 and this is the size of the Images used to draw the figures
-            widthTable = heightTable;
+            widthTable = 600;  //NOTE: USe 600, because this way the cell size is 75 and this is the size of the Images used to draw the figures
             cellWidth = widthTable / 8;
-            cellHeight = cellWidth;
 
+            
             cells = new Cell[8, 8];
+            possMoves = new bool[8, 8];
+            setAllCellsAsFree();
+        }
 
-            //populate the structure on the table
-            for (int i = 0; i < 8; i++)
+        internal static void setAllCellsAsFree()
+        {
+            for (int x = 0; x < 8; x++)
             {
-                for (int j = 0; j < 8; j++)
+                for (int y = 0; y < 8; y++)
                 {
-                    cells[i, j] = new Cell(true); //empty cell
+                    cells[x, y] = new Cell(true); //empty cell
+                }
+            }
+        }
+        
+        internal static void resetAllPoss()
+        {
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 8; y++)
+                {
+                    possMoves[x, y] = false;
                 }
             }
         }
 
-        public static void repartFigures(Colors firstPlayerColor)
+        internal static void repartFigures(ColorsOfFigures firstPlayerColor)
         {
-            if (firstPlayerColor == Colors.black) {
-                for (int i = 0; i < 8; i++)
+            if (firstPlayerColor == ColorsOfFigures.black) {
+                for (int x = 0; x < 8; x++)
                 {
-                    cells[i, 0].MyFigure = FiguresBox.WhiteFigures[i];
-                    cells[i, 1].MyFigure = FiguresBox.WhiteFigures[i + 8];
-                    cells[i, 6].MyFigure = FiguresBox.BlackFigures[i + 8];
-                    cells[i, 7].MyFigure = FiguresBox.BlackFigures[i];
+                    cells[x, 0].MyFigure = FiguresBox.getWhiteFigureAtIndex(x);
+                    cells[x, 1].MyFigure = FiguresBox.getWhiteFigureAtIndex(x + 8);
+                    cells[x, 6].MyFigure = FiguresBox.getBlackFiguresAtIndex(x + 8);
+                    cells[x, 7].MyFigure = FiguresBox.getBlackFiguresAtIndex(x);
                 }
             } else {
-                for (int i = 0; i < 8; i++)
+                for (int x = 0; x < 8; x++)
                 {
-                    cells[i, 0].MyFigure = FiguresBox.BlackFigures[i];
-                    cells[i, 1].MyFigure = FiguresBox.BlackFigures[i + 8];
-                    cells[i, 6].MyFigure = FiguresBox.WhiteFigures[i + 8];
-                    cells[i, 7].MyFigure = FiguresBox.WhiteFigures[i];
+                    cells[x, 0].MyFigure = FiguresBox.getBlackFiguresAtIndex(x);
+                    cells[x, 1].MyFigure = FiguresBox.getBlackFiguresAtIndex(x + 8);
+                    cells[x, 6].MyFigure = FiguresBox.getWhiteFigureAtIndex(x + 8);
+                    cells[x, 7].MyFigure = FiguresBox.getWhiteFigureAtIndex(x);
+                }
+            }
+            for (int x = 0; x < 8; x++)
+            {
+                for (int y = 0; y < 2; y++)
+                {
+                    cells[x, y].MyFigure.PositionX = x;
+                    cells[x, y].MyFigure.PositionY = y;
+                }
+                for (int y = 6; y < 8; y++)
+                {
+                    cells[x, y].MyFigure.PositionX = x;
+                    cells[x, y].MyFigure.PositionY = y;
                 }
             }
         }
 
-        public static Cell getCellFromIndex(int i, int j)
+        internal static Cell[,] Cells
         {
-            return cells[i, j];
+            get { return cells; }
         }
 
-        public static int BoardWidth
+        internal static bool[,] PossMoves
+        {
+            get { return possMoves; }
+        }
+
+        internal static int BoardWidth
         {
             get { return widthTable; }
         }
 
-        public static int BoardHeight
-        {
-            get { return heightTable; }
-        }
-
-        public static int CellWidth
+        internal static int CellWidth
         {
             get { return cellWidth; }
-        }
-
-        public static int CellHeight
-        {
-            get { return cellHeight; }
         }
     }
 
